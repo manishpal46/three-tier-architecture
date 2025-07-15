@@ -1,2 +1,2 @@
-terraform/scripts/elevates-key
+*.pem
 .terraform/
