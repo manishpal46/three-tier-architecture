@@ -1,2 +1,2 @@
-terraform/ssh/elevates-key
+*.pem
 .terraform/
