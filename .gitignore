@@ -1,3 +1,2 @@
 terraform/scripts/elevates-key
 .terraform/
-*.tfvars
