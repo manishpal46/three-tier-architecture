@@ -23,11 +23,6 @@ variable "aws_region" {
   type        = string
 }
 
-variable "aws_profile" {
-  description = "AWS CLI profile to use"
-  type        = string
-}
-
 variable "ami_id" {
   description = "AMI to use for EC2 instances"
   type        = string
