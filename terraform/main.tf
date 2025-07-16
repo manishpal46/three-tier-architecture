@@ -75,7 +75,7 @@ resource "aws_route_table" "private" {
 resource "aws_route" "private_subnet_nat" {
   route_table_id         = aws_route_table.private.id
   destination_cidr_block = "0.0.0.0/0"
-  instance_id            = aws_instance.bastion.id
+  network_interface_id   = aws_instance.bastion.primary_network_interface_id
 
   depends_on = [aws_instance.bastion]
 }

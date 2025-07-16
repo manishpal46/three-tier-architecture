@@ -10,8 +10,8 @@ output "private_subnet_ids" {
   value = aws_subnet.private[*].id
 }
 
-output "instance_id" {
-  value = aws_instance.this.id
+output "bastion_public_ip" {
+  value = aws_instance.bastion.public_ip
 }
 
 output "private_ip" {
