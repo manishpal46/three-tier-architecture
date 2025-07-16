@@ -54,7 +54,7 @@ resource "aws_route_table" "public" {
 resource "aws_route" "public_subnet_nat" {
   route_table_id         = aws_route_table.public.id
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id = aws_internet_gateway.igw.id
+  gateway_id             = aws_internet_gateway.igw.id
 }
 
 resource "aws_route_table_association" "public" {
@@ -75,7 +75,7 @@ resource "aws_route_table" "private" {
 resource "aws_route" "private_subnet_nat" {
   route_table_id         = aws_route_table.private.id
   destination_cidr_block = "0.0.0.0/0"
-  instance_id            = aws_instance.bastion.id
+  network_interface_id   = aws_instance.bastion.primary_network_interface_id
 
   depends_on = [aws_instance.bastion]
 }
@@ -87,12 +87,12 @@ resource "aws_route_table_association" "private" {
 }
 
 resource "aws_instance" "bastion" {
-  ami                    = var.ami_id
-  instance_type          = var.instance_type
-  subnet_id              = aws_subnet.public[0].id
+  ami                         = var.ami_id
+  instance_type               = var.instance_type
+  subnet_id                   = aws_subnet.public[0].id
   associate_public_ip_address = true
-  key_name               = aws_key_pair.elevates_key.key_name
-  vpc_security_group_ids = [aws_security_group.bastion_sg.id]
+  key_name                    = aws_key_pair.elevates_key.key_name
+  vpc_security_group_ids      = [aws_security_group.bastion_sg.id]
 
   tags = {
     Name = "elevates-bastion"
@@ -113,12 +113,12 @@ resource "aws_instance" "frontend" {
 }
 
 resource "aws_instance" "backend" {
-  ami                    = var.ami_id
-  instance_type          = var.instance_type
-  subnet_id              = aws_subnet.private[0].id
+  ami                         = var.ami_id
+  instance_type               = var.instance_type
+  subnet_id                   = aws_subnet.private[0].id
   associate_public_ip_address = false
-  key_name               = aws_key_pair.elevates_key.key_name
-  vpc_security_group_ids = [aws_security_group.backend_sg.id]
+  key_name                    = aws_key_pair.elevates_key.key_name
+  vpc_security_group_ids      = [aws_security_group.backend_sg.id]
   tags = {
     Name = "elevates-backend"
   }
@@ -126,12 +126,12 @@ resource "aws_instance" "backend" {
 }
 
 resource "aws_instance" "db" {
-  ami                    = var.ami_id
-  instance_type          = var.instance_type
-  subnet_id              = aws_subnet.private[1].id
+  ami                         = var.ami_id
+  instance_type               = var.instance_type
+  subnet_id                   = aws_subnet.private[1].id
   associate_public_ip_address = false
-  key_name               = aws_key_pair.elevates_key.key_name
-  vpc_security_group_ids = [aws_security_group.db_sg.id]
+  key_name                    = aws_key_pair.elevates_key.key_name
+  vpc_security_group_ids      = [aws_security_group.db_sg.id]
 
   tags = {
     Name = "elevates-postgreSQL"
@@ -153,7 +153,7 @@ resource "aws_security_group" "bastion_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["49.36.144.34/32"]  # Replace with your public IP
+    cidr_blocks = ["49.36.144.34/32"] # Replace with your public IP
   }
 
   egress {

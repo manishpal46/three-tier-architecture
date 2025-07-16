@@ -1,12 +1,15 @@
-terraform/
-├── main.tf
-├── variables.tf
-├── terraform.tfvars
-├── outputs.tf
-├── providers.tf 
-├── scripts/
-│   ├── elevates-key
-│   ├── elevates-key.pub
+three-tier-architecture
+├──terraform/
+|   ├── main.tf
+|   ├── variables.tf
+|   ├── terraform.tfvars
+|   ├── outputs.tf
+|   ├── providers.tf 
+|   ├── scripts/
+|   │   ├── elevates-key
+|   │   ├── elevates-key.pub
+├── .gitignore
+├── READ.MD
 
 
 ===========================================
